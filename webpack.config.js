@@ -2,7 +2,7 @@ const path = require('path')
 module.exports = {
   mode: 'development',
 
-  entry: './index.tsx',
+  entry: './src/index.tsx',
 
   // Enable sourcemaps for debugging webpack's output.
   devtool: 'source-map',
