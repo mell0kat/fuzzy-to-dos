@@ -4,12 +4,16 @@ import AddTodo from '../containers/AddTodo'
 import VisibleTodoList from '../containers/VisibleTodoList'
 
 interface IProps {}
-const App: FunctionComponent<IProps> = () => (
-  <div>
-    <AddTodo />
-    <VisibleTodoList />
-    <Footer />
-  </div>
-)
+const App: FunctionComponent<IProps> = () => {
+  console.log('functional component')
+  return (
+    <div>
+      <AddTodo />
+      <p>HEllo!</p>
+      <VisibleTodoList />
+      <Footer />
+    </div>
+  )
+}
 
 export default App

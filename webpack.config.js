@@ -1,21 +1,23 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
 module.exports = {
   mode: 'development',
 
-  entry: './src/index.tsx',
+  entry: path.join(__dirname, 'src', 'index.tsx'),
 
   // Enable sourcemaps for debugging webpack's output.
   devtool: 'source-map',
 
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    //publicPath: path.join(__dirname, 'dist'),
     compress: true,
-    port: 9000
+    port: 9000,
+    writeToDisk: true
   },
 
   resolve: {
-    // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: ['.ts', '.tsx']
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
 
   module: {
@@ -36,5 +38,11 @@ module.exports = {
         loader: 'source-map-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: path.join(__dirname, 'index.html')
+    })
+  ]
 }

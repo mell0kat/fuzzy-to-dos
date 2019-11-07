@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
@@ -10,6 +10,7 @@ const store = createStore(rootReducer)
 render(
   <Provider store={store}>
     <App />
+    <p>Hi there</p>
   </Provider>,
   document.getElementById('root')
 )
