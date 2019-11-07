@@ -1,18 +1,18 @@
 import { ITodoActionTypes } from '../actions'
 
-export interface ITodo {
+export interface ITodo_Create {
   task: string
   dueAt?: number
   completed: boolean
 }
 
-export interface ITodo_Read extends ITodo {
+export interface ITodo extends ITodo_Create {
   id: number
   createdAt?: number
   updatedAt?: number
 }
 
-type ITodoState = ITodo_Read[]
+type ITodoState = ITodo[]
 
 const initialState: ITodoState = []
 

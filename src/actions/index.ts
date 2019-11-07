@@ -19,7 +19,7 @@ interface ISetVisibilityFilterAction {
 }
 
 export const setVisibilityFilter = (
-  filter: 'SHOW_ALL' | 'SHOW_COMPLETED' | 'SHOW_ACTIVE'
+  filter: IFilter
 ): ISetVisibilityFilterAction => ({
   type: 'SET_VISIBILITY_FILTER',
   filter
@@ -35,7 +35,9 @@ export const toggleTodo = (id: number): IToggleTodoAction => ({
   id
 })
 
-export const VisibilityFilters = {
+export const VisibilityFilters: {
+  [key: string]: IFilter
+} = {
   SHOW_ALL: 'SHOW_ALL',
   SHOW_COMPLETED: 'SHOW_COMPLETED',
   SHOW_ACTIVE: 'SHOW_ACTIVE'

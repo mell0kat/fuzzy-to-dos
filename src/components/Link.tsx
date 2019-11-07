@@ -1,7 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FunctionComponent, MouseEventHandler } from 'react'
 
-const Link = ({ active, children, onClick }) => (
+interface IProps {
+  onClick: MouseEventHandler
+  active: boolean
+}
+
+const Link: FunctionComponent<IProps> = ({ active, children, onClick }) => (
   <button
     onClick={onClick}
     disabled={active}
@@ -12,11 +16,5 @@ const Link = ({ active, children, onClick }) => (
     {children}
   </button>
 )
-
-Link.propTypes = {
-  active: PropTypes.bool.isRequired,
-  children: PropTypes.node.isRequired,
-  onClick: PropTypes.func.isRequired
-}
 
 export default Link

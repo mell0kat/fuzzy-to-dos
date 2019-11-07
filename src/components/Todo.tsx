@@ -1,21 +1,19 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FunctionComponent, MouseEventHandler } from 'react'
+import { ITodo } from '../reducers/todo'
 
-const Todo = ({ onClick, completed, text }) => (
+interface IProps extends ITodo {
+  onClick: MouseEventHandler
+}
+
+const Todo: FunctionComponent<IProps> = ({ onClick, completed, task }) => (
   <li
     onClick={onClick}
     style={{
       textDecoration: completed ? 'line-through' : 'none'
     }}
   >
-    {text}
+    {task}
   </li>
 )
-
-Todo.propTypes = {
-  onClick: PropTypes.func.isRequired,
-  completed: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired
-}
 
 export default Todo

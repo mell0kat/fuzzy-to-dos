@@ -1,24 +1,19 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React, { FunctionComponent } from 'react'
 import Todo from './Todo'
+import { ITodo } from '../reducers/todo'
+import { toggleTodo } from '../actions'
 
-const TodoList = ({ todos, toggleTodo }) => (
+interface IProps {
+  todos: ITodo[]
+  toggleTodo: typeof toggleTodo
+}
+
+const TodoList: FunctionComponent<IProps> = ({ todos, toggleTodo }) => (
   <ul>
     {todos.map(todo => (
       <Todo key={todo.id} {...todo} onClick={() => toggleTodo(todo.id)} />
     ))}
   </ul>
 )
-
-TodoList.propTypes = {
-  todos: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      completed: PropTypes.bool.isRequired,
-      text: PropTypes.string.isRequired
-    }).isRequired
-  ).isRequired,
-  toggleTodo: PropTypes.func.isRequired
-}
 
 export default TodoList

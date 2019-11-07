@@ -1,9 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { addTodo } from '../actions'
+import { Dispatch } from 'redux'
+import { addTodo, ITodoActionTypes } from '../actions'
+import { GlobalState } from '../reducers'
 
-const AddTodo = ({ dispatch }) => {
-  let input
+const AddTodo = () => {
+  let input: HTMLInputElement
 
   return (
     <div>
@@ -13,7 +15,7 @@ const AddTodo = ({ dispatch }) => {
           if (!input.value.trim()) {
             return
           }
-          dispatch(addTodo(input.value))
+          addTodo(input.value)
           input.value = ''
         }}
       >
@@ -24,4 +26,13 @@ const AddTodo = ({ dispatch }) => {
   )
 }
 
-export default connect()(AddTodo)
+const mapStateToProps = (_state: GlobalState) => ({})
+
+const mapDispatchToProps = (dispatch: Dispatch<ITodoActionTypes>) => ({
+  addTodo: (task: string) => dispatch(addTodo(task))
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddTodo)

@@ -1,6 +1,10 @@
-import { VisibilityFilters } from '../actions'
+import { VisibilityFilters, IFilter, ITodoActionTypes } from '../actions'
 
-const visibilityFilter = (state = VisibilityFilters.SHOW_ALL, action) => {
+type IVisibilityState = IFilter
+
+const initialState: IVisibilityState = VisibilityFilters.SHOW_ALL
+
+const visibilityFilter = (state = initialState, action: ITodoActionTypes) => {
   switch (action.type) {
     case 'SET_VISIBILITY_FILTER':
       return action.filter
