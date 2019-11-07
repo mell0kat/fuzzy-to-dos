@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux'
 import { addTodo, ITodoActionTypes } from '../actions'
 import { GlobalState } from '../reducers'
+import Button from '../components/Button'
+import Input from '../components/Input'
 
-const AddTodo = () => {
+interface IProps {
+  addTodo: typeof addTodo
+}
+
+const AddTodo: FunctionComponent<IProps> = props => {
   let input: HTMLInputElement
 
   return (
@@ -15,12 +21,12 @@ const AddTodo = () => {
           if (!input.value.trim()) {
             return
           }
-          addTodo(input.value)
+          props.addTodo(input.value)
           input.value = ''
         }}
       >
-        <input ref={node => (input = node)} />
-        <button type='submit'>Add Todo</button>
+        <Input ref={node => (input = node)} />
+        <Button type='submit'>Add Todo</Button>
       </form>
     </div>
   )
