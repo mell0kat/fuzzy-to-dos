@@ -1,3 +1,5 @@
+import { ITodo } from '../reducers/todo'
+
 interface IAddTodoAction {
   type: 'ADD_TODO'
   id: number
@@ -30,6 +32,21 @@ interface IToggleTodoAction {
   id: number
 }
 
+export const editTodo = (
+  id: number,
+  editObj: Partial<ITodo>
+): IEditTodoAction => ({
+  type: 'EDIT_TODO',
+  id,
+  editObj
+})
+
+interface IEditTodoAction {
+  type: 'EDIT_TODO'
+  id: number
+  editObj: Partial<ITodo>
+}
+
 export const toggleTodo = (id: number): IToggleTodoAction => ({
   type: 'TOGGLE_TODO',
   id
@@ -57,4 +74,5 @@ export type ITodoActionTypes =
   | IAddTodoAction
   | ISetVisibilityFilterAction
   | IToggleTodoAction
+  | IEditTodoAction
   | IRemoveTodoAction

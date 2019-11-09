@@ -17,6 +17,25 @@ type ITodoState = ITodo[]
 
 const initialState: ITodoState = []
 
+const findAndModifyTodo = (
+  state: ITodoState,
+  todoId: number,
+  mutator: (e: ITodo) => ITodo
+): ITodoState => {
+  const index = state.findIndex(t => t.id === todoId)
+
+  // It would take some shenanigans for this to happen
+  if (index === -1) {
+    return state
+  }
+
+  const newState = state.slice()
+
+  newState.splice(index, 1, mutator(state[index]))
+
+  return newState
+}
+
 const todos = (state = initialState, action: ITodoActionTypes): ITodoState => {
   switch (action.type) {
     case 'ADD_TODO':
@@ -37,6 +56,9 @@ const todos = (state = initialState, action: ITodoActionTypes): ITodoState => {
           ? { ...todo, completed: !todo.completed, updatedAt: Date.now() }
           : todo
       )
+    case 'EDIT_TODO':
+      const mutator = (t: ITodo) => ({ ...t, ...action.editObj })
+      return findAndModifyTodo(state, action.id, mutator)
     case 'REMOVE_TODO':
       return filter(state, (todo: ITodo) => todo.id !== action.id)
     default:
