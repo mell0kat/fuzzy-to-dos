@@ -35,6 +35,16 @@ export const toggleTodo = (id: number): IToggleTodoAction => ({
   id
 })
 
+interface IRemoveTodoAction {
+  type: 'REMOVE_TODO'
+  id: number
+}
+
+export const removeTodo = (id: number): IRemoveTodoAction => ({
+  type: 'REMOVE_TODO',
+  id
+})
+
 export const VisibilityFilters: {
   [key: string]: IFilter
 } = {
@@ -47,3 +57,4 @@ export type ITodoActionTypes =
   | IAddTodoAction
   | ISetVisibilityFilterAction
   | IToggleTodoAction
+  | IRemoveTodoAction

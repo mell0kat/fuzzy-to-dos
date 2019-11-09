@@ -1,3 +1,4 @@
+import filter from 'lodash/filter'
 import { ITodoActionTypes } from '../actions'
 
 export interface ITodo_Create {
@@ -36,6 +37,8 @@ const todos = (state = initialState, action: ITodoActionTypes): ITodoState => {
           ? { ...todo, completed: !todo.completed, updatedAt: Date.now() }
           : todo
       )
+    case 'REMOVE_TODO':
+      return filter(state, (todo: ITodo) => todo.id !== action.id)
     default:
       return state
   }

@@ -1,17 +1,27 @@
 import React, { FunctionComponent } from 'react'
 import Todo from './Todo'
 import { ITodo } from '../reducers/todo'
-import { toggleTodo } from '../actions'
+import { toggleTodo, removeTodo } from '../actions'
 
 interface IProps {
   todos: ITodo[]
   toggleTodo: typeof toggleTodo
+  removeTodo: typeof removeTodo
 }
 
-const TodoList: FunctionComponent<IProps> = ({ todos, toggleTodo }) => (
+const TodoList: FunctionComponent<IProps> = ({
+  todos,
+  toggleTodo,
+  removeTodo
+}) => (
   <ul>
     {todos.map(todo => (
-      <Todo key={todo.id} {...todo} onClick={() => toggleTodo(todo.id)} />
+      <Todo
+        key={todo.id}
+        {...todo}
+        onClick={() => toggleTodo(todo.id)}
+        removeTodo={() => removeTodo(todo.id)}
+      />
     ))}
   </ul>
 )

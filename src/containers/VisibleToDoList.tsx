@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import { toggleTodo } from '../actions'
+import { toggleTodo, removeTodo } from '../actions'
 import TodoList from '../components/TodoList'
 import { VisibilityFilters, IFilter, ITodoActionTypes } from '../actions'
 import { GlobalState } from '../reducers/'
@@ -24,7 +24,8 @@ const mapStateToProps = (state: GlobalState) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<ITodoActionTypes>) => ({
-  toggleTodo: (id: number) => dispatch(toggleTodo(id))
+  toggleTodo: (id: number) => dispatch(toggleTodo(id)),
+  removeTodo: (id: number) => dispatch(removeTodo(id))
 })
 
 export default connect(

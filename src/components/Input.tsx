@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export default styled.input`
-  color: ${props => props.theme.colors.fuzzyGreen};
   padding: 0.5rem;
   outline: none;
   border: none;
