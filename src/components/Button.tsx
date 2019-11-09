@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 
-export default styled.button`
-  color: ${props => props.theme.colors.fuzzyGreen};
-  padding: 0.5rem;
+export default styled.button<{ disabled: boolean }>`
+  color: ${props => (props.disabled ? 'white' : props.theme.colors.fuzzyGreen)};
+  background-color: ${props =>
+    props.disabled ? props.theme.colors.fuzzyGreen : 'transparent'};
+  padding: 0.25rem 0.5rem;
   margin: 0.5rem;
-  background: none;
   outline: none;
   border: 1px ${props => props.theme.colors.fuzzyGreen} solid;
   border-radius: 2px;

@@ -1,4 +1,5 @@
 import React, { FunctionComponent, MouseEventHandler } from 'react'
+import Button from './Button'
 
 interface IProps {
   onClick: MouseEventHandler
@@ -6,15 +7,9 @@ interface IProps {
 }
 
 const Link: FunctionComponent<IProps> = ({ active, children, onClick }) => (
-  <button
-    onClick={onClick}
-    disabled={active}
-    style={{
-      marginLeft: '4px'
-    }}
-  >
+  <Button onClick={onClick} disabled={active}>
     {children}
-  </button>
+  </Button>
 )
 
 export default Link

@@ -19,7 +19,7 @@ const TodoList: FunctionComponent<IProps> = ({
       <Todo
         key={todo.id}
         {...todo}
-        onClick={() => toggleTodo(todo.id)}
+        toggleCompleted={() => toggleTodo(todo.id)}
         removeTodo={() => removeTodo(todo.id)}
       />
     ))}

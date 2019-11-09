@@ -26,7 +26,9 @@ const AddTodo: FunctionComponent<IProps> = props => {
         }}
       >
         <Input ref={node => (input = node)} />
-        <Button type='submit'>Add Todo</Button>
+        <Button type='submit' disabled={false}>
+          Add Todo
+        </Button>
       </form>
     </div>
   )

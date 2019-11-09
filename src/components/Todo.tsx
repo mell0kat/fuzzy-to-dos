@@ -1,9 +1,10 @@
 import React, { FunctionComponent, MouseEventHandler } from 'react'
 import styled from 'styled-components'
 import { ITodo } from '../reducers/todo'
+// import './CheckboxCustomStyles.scss'
 
 interface IProps extends ITodo {
-  onClick: MouseEventHandler
+  toggleCompleted: MouseEventHandler
   removeTodo: MouseEventHandler
 }
 
@@ -27,17 +28,20 @@ const StyledTodo = styled.li<Pick<IProps, 'completed'>>`
   min-width: 40%;
 `
 
+const CheckBox = styled.input``
+
 const Todo: FunctionComponent<IProps> = ({
-  onClick,
+  toggleCompleted,
   removeTodo,
   completed,
   task
 }) => (
   <FlexContainer>
-    <RemoveButton onClick={removeTodo}>×</RemoveButton>
-    <StyledTodo onClick={onClick} completed={completed}>
-      {task}
-    </StyledTodo>
+    <CheckBox type='checkbox' onClick={toggleCompleted} />
+    <StyledTodo completed={completed}>{task}</StyledTodo>
+    <RemoveButton aria-role='button' onClick={removeTodo}>
+      ×
+    </RemoveButton>
   </FlexContainer>
 )
 

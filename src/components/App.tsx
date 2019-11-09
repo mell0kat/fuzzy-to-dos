@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import { styledTheme } from '../'
-import Footer from './Footer'
+import FilterSection from './FilterSection'
 import AddTodo from '../containers/AddTodo'
 import VisibleTodoList from '../containers/VisibleTodoList'
 import {
@@ -25,7 +25,7 @@ const App: FunctionComponent<IProps> = () => {
       <GlobalStyle />
       <AddTodo />
       <VisibleTodoList />
-      <Footer />
+      <FilterSection />
     </FlexColumnContainer>
   )
 }
