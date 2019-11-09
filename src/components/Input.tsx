@@ -5,6 +5,7 @@ export default styled.input`
   outline: none;
   border: none;
   border-radius: 2px;
+  margin: 0.25rem;
   &:active,
   &:visited,
   &:focus {

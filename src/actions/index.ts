@@ -4,13 +4,15 @@ interface IAddTodoAction {
   type: 'ADD_TODO'
   id: number
   task: string
+  dueAt: Date
 }
 
 let nextTodoId = 0
-export const addTodo = (task: string): IAddTodoAction => ({
+export const addTodo = (task: string, dueAt: Date): IAddTodoAction => ({
   type: 'ADD_TODO',
   id: nextTodoId++,
-  task
+  task,
+  dueAt
 })
 
 export type IFilter = 'SHOW_ALL' | 'SHOW_COMPLETED' | 'SHOW_ACTIVE'

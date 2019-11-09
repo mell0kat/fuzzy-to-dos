@@ -3,14 +3,14 @@ import { ITodoActionTypes } from '../actions'
 
 export interface ITodo_Create {
   task: string
-  dueAt?: number
+  dueAt?: Date
   completed: boolean
 }
 
 export interface ITodo extends ITodo_Create {
   id: number
-  createdAt?: number
-  updatedAt?: number
+  createdAt?: Date
+  updatedAt?: Date
 }
 
 type ITodoState = ITodo[]
@@ -45,15 +45,15 @@ const todos = (state = initialState, action: ITodoActionTypes): ITodoState => {
           id: action.id,
           task: action.task,
           completed: false,
-          createdAt: Date.now(),
+          createdAt: new Date(),
           updatedAt: null,
-          dueAt: null
+          dueAt: action.dueAt
         }
       ]
     case 'TOGGLE_TODO':
       return state.map(todo =>
         todo.id === action.id
-          ? { ...todo, completed: !todo.completed, updatedAt: Date.now() }
+          ? { ...todo, completed: !todo.completed, updatedAt: new Date() }
           : todo
       )
     case 'EDIT_TODO':

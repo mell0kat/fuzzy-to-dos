@@ -26,17 +26,19 @@ const RemoveButton = styled.span<{ onClick: MouseEventHandler }>`
 const StyledTodo = styled.li<Pick<IProps, 'completed'>>`
   background: white;
   text-decoration: ${props => (props.completed ? 'line-through' : 'none')};
-  padding: 1rem;
+  padding: 2rem 1rem;
   list-style-type: none;
   margin: 1rem;
-  min-width: 40%;
+  position: relative;
+  font-size: 1.25rem;
+  min-width: 40vw;
 `
 
 const CheckBox = styled.input``
 
 const EditButton = styled.span<{ onClick: MouseEventHandler }>`
   color: ${props => props.theme.colors.fuzzyGreen};
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   transform: rotate(75deg);
   margin-right: 0.75rem;
   cursor: pointer;
@@ -47,6 +49,20 @@ const SaveButton = styled(Button)<{ onClick: MouseEventHandler }>`
   margin: 0.75rem;
 `
 
+const DueDate = styled.span`
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+  font-size: 0.75rem;
+`
+
+const CreatedDate = styled.span`
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  font-size: 0.75rem;
+`
+
 interface IProps extends ITodo {
   toggleCompleted: MouseEventHandler
   removeTodo: MouseEventHandler
@@ -54,7 +70,15 @@ interface IProps extends ITodo {
 }
 
 const Todo = (props: IProps) => {
-  const { toggleCompleted, editTodo, removeTodo, completed, task } = props
+  const {
+    toggleCompleted,
+    editTodo,
+    removeTodo,
+    completed,
+    task,
+    dueAt,
+    createdAt
+  } = props
   const [editing, toggleEditing] = useState(false)
   const [todoText, handleChangeTodoText] = useState(task)
 
@@ -74,7 +98,25 @@ const Todo = (props: IProps) => {
           onChange={e => handleChangeTodoText(e.target.value)}
         />
       ) : (
-        <StyledTodo completed={completed}>{task}</StyledTodo>
+        <StyledTodo completed={completed}>
+          <DueDate>
+            due{' '}
+            {dueAt.toLocaleDateString(undefined, {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric'
+            })}
+          </DueDate>
+          {task}
+          <CreatedDate>
+            createde{' '}
+            {createdAt.toLocaleDateString(undefined, {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric'
+            })}
+          </CreatedDate>
+        </StyledTodo>
       )}
       {editing ? (
         <SaveButton

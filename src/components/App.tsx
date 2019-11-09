@@ -23,6 +23,7 @@ const App: FunctionComponent<IProps> = () => {
   return (
     <FlexColumnContainer>
       <GlobalStyle />
+      My Fuzzy To-do List
       <AddTodo />
       <VisibleTodoList />
       <FilterSection />
