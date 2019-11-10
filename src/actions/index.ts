@@ -64,6 +64,17 @@ export const removeTodo = (id: number): IRemoveTodoAction => ({
   id
 })
 
+export type ISortByKey = 'dueAt' | 'createdAt'
+interface ISortTodosAction {
+  type: 'SORT_TODOS'
+  by: ISortByKey
+}
+
+export const sortTodos = (by: ISortByKey): ISortTodosAction => ({
+  type: 'SORT_TODOS',
+  by
+})
+
 export const VisibilityFilters: {
   [key: string]: IFilter
 } = {
@@ -78,3 +89,4 @@ export type ITodoActionTypes =
   | IToggleTodoAction
   | IEditTodoAction
   | IRemoveTodoAction
+  | ISortTodosAction

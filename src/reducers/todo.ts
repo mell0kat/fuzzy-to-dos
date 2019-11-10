@@ -1,5 +1,5 @@
 import filter from 'lodash/filter'
-import { ITodoActionTypes } from '../actions'
+import { ITodoActionTypes, ISortByKey } from '../actions'
 
 export interface ITodo_Create {
   task: string
@@ -61,6 +61,11 @@ const todos = (state = initialState, action: ITodoActionTypes): ITodoState => {
       return findAndModifyTodo(state, action.id, mutator)
     case 'REMOVE_TODO':
       return filter(state, (todo: ITodo) => todo.id !== action.id)
+    case 'SORT_TODOS':
+      const copyOfState = state.slice()
+      const sortByKey: ISortByKey = action.by
+      copyOfState.sort((a, b) => +a[sortByKey] - +b[sortByKey])
+      return copyOfState
     default:
       return state
   }

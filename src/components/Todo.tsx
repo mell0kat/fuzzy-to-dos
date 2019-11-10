@@ -88,7 +88,7 @@ const Todo = (props: IProps) => {
         <CheckBox
           type='checkbox'
           onClick={() => {
-            setTimeout(toggleCompleted, 500)
+            setTimeout(toggleCompleted, 250)
           }}
         />
       )}
@@ -109,7 +109,7 @@ const Todo = (props: IProps) => {
           </DueDate>
           {task}
           <CreatedDate>
-            createde{' '}
+            created{' '}
             {createdAt.toLocaleDateString(undefined, {
               year: 'numeric',
               month: 'short',
