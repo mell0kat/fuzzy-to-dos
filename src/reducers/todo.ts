@@ -1,5 +1,6 @@
 import filter from 'lodash/filter'
 import { ITodoActionTypes, ISortByKey } from '../actions'
+import { getStateFromLocalStorage } from '../sagas'
 
 export interface ITodo_Create {
   task: string
@@ -8,18 +9,18 @@ export interface ITodo_Create {
 }
 
 export interface ITodo extends ITodo_Create {
-  id: number
+  id: string
   createdAt?: Date
   updatedAt?: Date
 }
 
 type ITodoState = ITodo[]
 
-const initialState: ITodoState = []
+const initialState: ITodoState = getStateFromLocalStorage() || []
 
 const findAndModifyTodo = (
   state: ITodoState,
-  todoId: number,
+  todoId: string,
   mutator: (e: ITodo) => ITodo
 ): ITodoState => {
   const index = state.findIndex(t => t.id === todoId)

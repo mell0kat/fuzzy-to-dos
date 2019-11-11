@@ -24,10 +24,10 @@ const mapStateToProps = (state: GlobalState) => ({
 })
 
 const mapDispatchToProps = (dispatch: Dispatch<ITodoActionTypes>) => ({
-  toggleTodo: (id: number) => dispatch(toggleTodo(id)),
-  editTodo: (id: number, editObj: Partial<ITodo>) =>
+  toggleTodo: (id: string) => dispatch(toggleTodo(id)),
+  editTodo: (id: string, editObj: Partial<ITodo>) =>
     dispatch(editTodo(id, editObj)),
-  removeTodo: (id: number) => dispatch(removeTodo(id))
+  removeTodo: (id: string) => dispatch(removeTodo(id))
 })
 
 export default connect(

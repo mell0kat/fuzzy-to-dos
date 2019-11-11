@@ -45,7 +45,7 @@ const AddTodo: FunctionComponent<IProps> = props => {
       >
         <Label>To-do</Label>
         <Input ref={node => (input = node)} required />
-        <Label>Due date:</Label>
+        <Label>Due date</Label>
         <DatePicker
           selected={dueAt}
           onChange={handleDueAtChange}

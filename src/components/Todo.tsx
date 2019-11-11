@@ -83,7 +83,7 @@ const Todo = (props: IProps) => {
   const [todoText, handleChangeTodoText] = useState(task)
 
   return (
-    <FlexContainer>
+    <FlexContainer className='animated slideInUp faster'>
       {!editing && (
         <CheckBox
           type='checkbox'

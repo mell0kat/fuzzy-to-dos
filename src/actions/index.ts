@@ -2,15 +2,17 @@ import { ITodo } from '../reducers/todo'
 
 interface IAddTodoAction {
   type: 'ADD_TODO'
-  id: number
+  id: string
   task: string
   dueAt: Date
 }
 
-let nextTodoId = 0
+const generateRandomId = () =>
+  [...Array(10)].map(i => (~~(Math.random() * 36)).toString(36)).join('')
+
 export const addTodo = (task: string, dueAt: Date): IAddTodoAction => ({
   type: 'ADD_TODO',
-  id: nextTodoId++,
+  id: generateRandomId(),
   task,
   dueAt
 })
@@ -31,11 +33,11 @@ export const setVisibilityFilter = (
 
 interface IToggleTodoAction {
   type: 'TOGGLE_TODO'
-  id: number
+  id: string
 }
 
 export const editTodo = (
-  id: number,
+  id: string,
   editObj: Partial<ITodo>
 ): IEditTodoAction => ({
   type: 'EDIT_TODO',
@@ -45,21 +47,21 @@ export const editTodo = (
 
 interface IEditTodoAction {
   type: 'EDIT_TODO'
-  id: number
+  id: string
   editObj: Partial<ITodo>
 }
 
-export const toggleTodo = (id: number): IToggleTodoAction => ({
+export const toggleTodo = (id: string): IToggleTodoAction => ({
   type: 'TOGGLE_TODO',
   id
 })
 
 interface IRemoveTodoAction {
   type: 'REMOVE_TODO'
-  id: number
+  id: string
 }
 
-export const removeTodo = (id: number): IRemoveTodoAction => ({
+export const removeTodo = (id: string): IRemoveTodoAction => ({
   type: 'REMOVE_TODO',
   id
 })
